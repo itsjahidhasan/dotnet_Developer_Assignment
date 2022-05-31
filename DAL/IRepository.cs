@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    interface IRepository<T,ID>
+    public interface IRepository<T,ID>
     {
         void Add(T e);
         List<T> Get();

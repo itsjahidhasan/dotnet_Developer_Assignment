@@ -18,9 +18,20 @@ namespace API.Controllers
         [HttpGet]
         public HttpResponseMessage GetSentence()
         {
-            var rs = SentenceService.Get();
+            
 
-            return Request.CreateResponse(HttpStatusCode.OK, rs);
+            try
+            {
+                var rs = SentenceService.Get();
+
+                return Request.CreateResponse(HttpStatusCode.OK, rs);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return Request.CreateResponse(HttpStatusCode.ExpectationFailed, "Fail to Get");
+            }
         }
 
 

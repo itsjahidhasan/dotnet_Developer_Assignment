@@ -18,9 +18,20 @@ namespace API.Controllers
         [HttpGet]
         public HttpResponseMessage GetWords()
         {
-            var rs = WordsService.Get();
+            
 
-            return Request.CreateResponse(HttpStatusCode.OK, rs);
+            try
+            {
+                var rs = WordsService.Get();
+
+                return Request.CreateResponse(HttpStatusCode.OK, rs);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return Request.CreateResponse(HttpStatusCode.ExpectationFailed, "Fail to Get");
+            }
         }
 
         
@@ -30,8 +41,18 @@ namespace API.Controllers
         [HttpPost]
         public HttpResponseMessage AddWords(WordsModel words)
         {
-            WordsService.Add(words);
-            return Request.CreateResponse(HttpStatusCode.Created,"words added");
+            try
+            {
+                WordsService.Add(words);
+                return Request.CreateResponse(HttpStatusCode.Created, "Page-size");
+
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return Request.CreateResponse(HttpStatusCode.ExpectationFailed, "Fail to add");
+            }
+            
 
         }
 

@@ -16,9 +16,11 @@ namespace API.Controllers
         // GET api/<controller>
         [Route("api/Words/Get")]
         [HttpGet]
-        public List<WordsModel> Get()
+        public HttpResponseMessage GetWords()
         {
-            return WordsService.Get();
+            var rs = WordsService.Get();
+
+            return Request.CreateResponse(HttpStatusCode.OK, rs);
         }
 
         
@@ -26,9 +28,11 @@ namespace API.Controllers
         // POST api/<controller>
         [Route("api/Words/Add")]
         [HttpPost]
-        public void Add([FromBody] WordsModel words)
+        public HttpResponseMessage AddWords(WordsModel words)
         {
             WordsService.Add(words);
+            return Request.CreateResponse(HttpStatusCode.Created,"words added");
+
         }
 
         

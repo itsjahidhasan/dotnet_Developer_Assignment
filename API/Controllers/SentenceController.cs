@@ -16,17 +16,15 @@ namespace API.Controllers
         // GET api/<controller>
         [Route("api/Sententce/Get")]
         [HttpGet]
-        public List<SentenceModel> Get()
+        public HttpResponseMessage GetSentence()
         {
-            return SentenceService.Get();
+            var rs = SentenceService.Get();
+
+            return Request.CreateResponse(HttpStatusCode.OK, rs);
         }
 
 
 
-        // POST api/<controller>
-        
-
-        
 
     }
 }
